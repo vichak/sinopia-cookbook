@@ -98,11 +98,16 @@ node['sinopia']['repos'] = {
 - Filter format is an Array with one Hash for one rule  
 - Wildcard is accepted in the filter name rule
 - Access can be provided to :
- * Default (all)
+ * All (default) : `$all`
+ * Anonymous : `$anonymous`
+ * Authenticated : `$authenticated`
  * Specified available users : `['user1', 'user2']`
- * admin account + all admin user : '@admins'
+ * admin account + all admin user : `@admins`
 - publish can be provided to :
- * Default (admin account only)
+ * Admin account only (default)
+ * All : `$all`
+ * Anonymous : `$anonymous`
+ * Authenticated : `$authenticated`
  * Specified available users + admin : `['user1', 'user2']`
  * admin account + all admin user : '@admins'
 - Storage value is the name of the folder where filtered packages will be set.

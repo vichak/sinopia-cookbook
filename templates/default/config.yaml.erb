@@ -37,6 +37,12 @@ packages:
   <% if filter['access'] %>
     <% if filter['access'] == '@admins' %>
     access: admin <%= @admins.join(' ') %>
+    <% elsif filter['access'] == '$all' %>
+    access: $all
+    <% elsif filter['access'] == '$anonymous' %>
+    access: $anonymous
+    <% elsif filter['access'] == '$authenticated' %>
+    access: $authenticated
     <% else %>
     access: admin <%= filter['access'].join(' ') %>
     <% end %>
@@ -46,8 +52,14 @@ packages:
   <% if filter['publish'] %>
     <% if filter['publish'] == '@admins' %>
     publish: admin <%= @admins.join(' ') %>
+    <% elsif filter['publish'] == '$all' %>
+    publish: $all
+    <% elsif filter['publish'] == '$anonymous' %>
+    publish: $anonymous
+    <% elsif filter['publish'] == '$authenticated' %>
+    publish: $authenticated
     <% else %>
-    publish: admin <%= filter['access'].join(' ') %>
+    publish: admin
     <% end %>
   <% else %>
     publish: admin
@@ -64,10 +76,11 @@ packages:
   '*':
   <% if node['sinopia']['strict_access'] %>
     access: admin <%= @admins.join(' ') %>
+    publish: admin <%= @admins.join(' ') %>
   <% else %>
     access: $all
+    publish: $authenticated
   <% end %>
-    publish: admin <%= @admins.join(' ') %>
     proxy: <%= node['sinopia']['mainrepo'] %>
 <%- end -%>
 
